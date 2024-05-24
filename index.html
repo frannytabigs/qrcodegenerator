@@ -73,7 +73,7 @@ Contact me: <a href='https://fb.com/franny.bolantoy' target="/">FB!</a>
 form. addEventListener('submit', function(event) {
 event. preventDefault();
 });
-
+var link = "";
 function qrgenerate(){
  
     var value = document.getElementById("qrinput").value;
@@ -81,10 +81,17 @@ function qrgenerate(){
     
       var dd = document.getElementById("qrcontent");
     value = encodeURIComponent(value);
-      var link = "'https://quickchart.io/qr?text=" + value + "'";
-        dd.innerHTML = "Click me to download! <br><a href="+link+ " download='qrgenerated' taget='_blank'><img src=" + link + "></a>";
+      link = "https://quickchart.io/qr?text=" + value;
+        dd.innerHTML = "<a id='dl' onclick='downloadimage()'>Click me to download! <br> <img src='" + link + "'></a>";
        
     }
+
+
+}
+function downloadimage(){
+  var downloadLink = document.getElementById('dl');
+  downloadLink.href = link;
+  downloadLink.download = 'qrcodegenerated.webp';
 
 
 }
