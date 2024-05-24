@@ -88,13 +88,13 @@ function qrgenerate(){
 
 
 }
-function downloadimage(){
+
+document.getElementById('dl').addEventListener('click', function() {
   var downloadLink = document.getElementById('dl');
-  downloadLink.href = link;
-  downloadLink.download = 'qrcodegenerated.webp';
-
-
-}
+  downloadLink.href = link';
+  downloadLink.download = 'iconqrgenerated.jpg';
+  //downloadLink.click();
+});
   </script>
 
 </body>
