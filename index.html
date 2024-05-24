@@ -82,19 +82,31 @@ function qrgenerate(){
       var dd = document.getElementById("qrcontent");
     value = encodeURIComponent(value);
       link = "https://quickchart.io/qr?text=" + value;
-        dd.innerHTML = "<a id='dl'>Click me to download! <br> <img src='" + link + "'></a>";
+        dd.innerHTML = "<a onclick='downloadImage()'>Click me to download! <br> <img src='" + link + "'></a>";
        
     }
 
 
 }
 
-document.getElementById('dl').addEventListener('click', function() {
-  var downloadLink = document.getElementById('dl');
-  downloadLink.href = link;
-  downloadLink.download = 'iconqrgenerated.jpg';
-  //downloadLink.click();
-});
+function downloadImage() {
+  var url = link;
+  fetch(url, {
+    mode : 'no-cors',
+  })
+    .then(response => response.blob())
+    .then(blob => {
+    let blobUrl = window.URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.download = url.replace(/^.*[\\\/]/, '');
+    a.href = blobUrl;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  })
+}
+
+
   </script>
 
 </body>
