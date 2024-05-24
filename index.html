@@ -81,7 +81,8 @@ function qrgenerate(){
     
       var dd = document.getElementById("qrcontent");
     value = encodeURIComponent(value);
-        dd.innerHTML = "<img src='https://quickchart.io/qr?text=" + value + "'>";
+      var link = "'https://quickchart.io/qr?text=" + value + "'";
+        dd.innerHTML = "<a href="+link+ " download='qrgenerated'>Click me to download! <br><img src=" + link + "></a>";
        
     }
 
