@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel='icon' type='image/x-icon' href="/qrcodegenerator/icon.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content='Qr Code Generator' property='og:title' />
+  <meta content='Make a your QR Codes!' property='og:description' />
+  <meta content='/' property='og:url' />
+  <meta property='og:site_name' content='Quick Response Code Generator!'>
+  <meta content='/icon.png' property='og:image' />
+  <meta content='#2f3136' name='theme-color' />
+
+
+  <title>QR Generator</title>
+ <style> 
+ html{
+   text-align: center;
+   font-size: 23px;
+}
+
+#qrinput{
+   font-size: 23px;
+   width: 60%;
+   padding: 10px;
+   margin: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+#qrbutton{
+    border-radius: 10px;
+    width: 60px;
+    padding: 10px;
+}
+
+ </style>
+
+
+</head>
+
+<body>
+
+  <header>
+    <a href="#"> <img id="logo" src="/qrcodegenerator/icon.jpg"> </a>
+  </header>
+
+
+
+  <div class="qrinputbox">
+    <form name="text">
+      <input id="qrinput" type="text" placeholder="Input text/link!" value="" required> <button id='qrbutton'
+        onclick="qrgenerate()">Make!</button>
+    </form>
+  </div>
+
+
+
+  <div class="qrcontent" id="qrcontent">
+    START GENERATING!
+  </div>
+
+  <br> <br>
+  <footer class="about">
+    Made by https://github.com/frannytabigs/qrcodegenerator
+Contact me: https://fb.com/franny.bolantoy  !
+  </footer>
+
+
+  <script>
+    const form = document. querySelector('form');
+form. addEventListener('submit', function(event) {
+event. preventDefault();
+});
+
+function qrgenerate(){
+ 
+    var value = document.getElementById("qrinput").value;
+    if (value != ""){
+    
+      var dd = document.getElementById("qrcontent");
+    value = encodeURIComponent(value);
+        dd.innerHTML = "<img src='https://quickchart.io/qr?text=" + value + "'>";
+       
+    }
+
+
+}
+  </script>
+
+</body>
+
+</html>
