@@ -93,21 +93,33 @@ function qrgenerate(){
 }
 
 function downloadImage() {
-  var url = link;
-  fetch(url, {
-    mode : 'no-cors',
-  })
-    .then(response => response.blob())
-    .then(blob => {
-    let blobUrl = window.URL.createObjectURL(blob);
-    let a = document.createElement('a');
-    a.download = title + '.png';
-    a.href = blobUrl;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  })
+gogo(link,title);
 }
+
+function gogo(url, title) {
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = title + '.png';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(blobUrl); // Revoke temporary URL after download
+    })
+    .catch(error => {
+      console.error('Error downloading image:', error);
+      // Handle download error (e.g., display an error message)
+    });
+}
+
 
 
   </script>
